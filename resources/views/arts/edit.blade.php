@@ -19,16 +19,9 @@
                 <textarea name="art[body]" placeholder="この作品は小学校で作った作品で…">{{ $art->body }}</textarea>
                 <p class='body__error' style="color:red">{{ $errors->first('art.body') }} </p>
             </div>
-            
             <!--ここにカテゴリーが入っていた-->
-           
         </div>
                 
-            
-        
-        
-        
-        
         <div class="footer flex justify-center">
             <input type="submit" value="更新" class="m-4 btn btn-success btn-sm px-2 py-1 bg-red-400 text-white font-semibold rounded hover:bg-red-500"/>
             <a href="/arts/" class="m-4">

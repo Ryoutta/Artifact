@@ -28,11 +28,6 @@
                     </select>
                 </div>
         </div>
-            
-
-            
-            
-            
         
         <div class="footer flex justify-center">
             <input type="submit" value="投稿" class="m-4 btn btn-success btn-sm px-2 py-1 bg-red-400 text-white font-semibold rounded hover:bg-red-500"/>

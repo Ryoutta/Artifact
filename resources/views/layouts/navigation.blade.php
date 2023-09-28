@@ -29,10 +29,7 @@
                         <a href="/arts" class="underline">引き継ぎ</a>
                     </div>
                 </div>
-               
-               
             </div>
-            
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 

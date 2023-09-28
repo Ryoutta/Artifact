@@ -1,33 +1,24 @@
 <x-app-layout>
     <h1 class="text-4xl mt-4 font-black">作品詳細</h1>
     
-        <!--<div class='content flex justify-center mt-8'>-->
-        <!--    <img src="{{ $art->image_url}}" alt="画像が読み込めません。"/>-->
-        <!--</div>-->
-    <div>
-        
-        
-    </div>
-    
     <div class="content " style="height: 200px;">
         <img src="{{ $art->image_url}}" alt="画像が読み込めません。" class="w-full h-full block object-contain flex justify-center" />
     </div>
     
     <div class="flex justify-center">
         制作者：{{ Auth::user()->name }}
-        
     </div>
-    
-    
     
     <div class="flex justify-center mt-4">
         <h2 class='title'>
             <a href="/arts/{{ $art->id }}">{{ $art->title }}</a>
         </h2>
     </div>
+    
     <div class="flex justify-center mt-4">
         <p class='body'>{{ $art->body }}</p>
     </div>
+    
     <div class="flex justify-center mt-4">
         <a href="/categories/{{ $art->category->id }}">{{ $art->category->name }}</a>
     </div>
@@ -70,7 +61,6 @@
         </div>
     </div>
 
-    
     <div class=" flex justify-center mt-4">
         <div>
             @if($art->is_liked_by_auth_user())
@@ -85,8 +75,6 @@
                 </form>
             @endif
         </div>
-
-
         
         <div class="footer">
             <a href="/arts/">

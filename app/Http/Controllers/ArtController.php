@@ -20,11 +20,6 @@ class ArtController extends Controller
         return view('/arts/show')->with(['art' => $art]);
     }
     
-    // public function create()
-    // {
-    //     return view('arts/create');
-    // }
-    
     public function store(ArtRequest $request, Art $art)
     {
         $input = $request['art'];
@@ -42,14 +37,6 @@ class ArtController extends Controller
     {
         return view('arts.create')->with(['categories' => $category->get()]);
     }
-    
-    // public function update(ArtRequest $request, Art $art)
-    // {
-    //     $input_art = $request['art'];
-    //     $input_art += ['user_id' => $request->user()->id];    //この行を追加
-    //     $art->fill($input_art)->save();
-    //     return redirect('/arts/' . $art->id);
-    // }
     
     public function edit(Art $art)
     {
