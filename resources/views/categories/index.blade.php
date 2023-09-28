@@ -1,24 +1,38 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>ArtLink</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
-        <h1>Art Name</h1>
-        <a href="/arts/create">create</a>
-        <div class='arts'>
-            @foreach($arts as $art)
-                <div class='art'>
-                    <a href="/arts/{{ $art->id }}"><h2 class="title">{{ $art->title }}</h2></a>
-                    <p class='body'>{{ $art->body }}</p>
+
+
+<x-app-layout >
+    <!--<h1 class="text-4xl">作品一覧</h1>-->
+    <!--<button type="buton" onclick="location.href='/arts/create'">新規作品投稿</button>-->
+    <div class='arts flex justify-center'>
+        <img class="w-1/12 block" src="/image/age.png">
+    </div>
+    <div class='grid grid-cols-4 '>
+        @foreach($arts as $art)
+            <div class='art m-11 '>
+                <div class=" " style="height: 200px;">
+                    <img src="{{ $art->image_url}}" alt="画像が読み込めません。" class="w-full h-full block object-contain flex justify-center" />
                 </div>
-            @endforeach
-        </div>
-        <a href="/categories/{{ $art->category->id }}">{{ $art->category->name }}</a>
-        <div class='pagiate'>{{ $arts->links() }}</div>
+                <a href="/arts/{{ $art->id }}" class="flex justify-center underline"><h2 class="title text-2xl font-mono">{{ $art->title }}</h2></a>
+                <!--<p class='body'>{{ $art->body }}</p>-->
+                <!--<form action="/arts/{{ $art->id }}" id="form_{{ $art->id }}" method="post">-->
+                <!--    @csrf-->
+                <!--    @method('DELETE')-->
+                <!--    <button type="button" onclick="deleteArt({{ $art->id }})">作品削除</button>-->
+                <!--</form>-->
+                <a href="/categories/{{ $art->category->id }}" class="flex justify-center underline">{{ $art->category->name }}</a>
+                
+            </div>
+        @endforeach
+    </div>
+    <div class='pagiate flex justify-center'>{{ $arts->links() }}</div>
+        <script>
+    //     function deleteArt(id){
+    //         'use strict'
+            
+    //         if(confirm('削除すると復元できません。\n本当に削除しますか？')){
+    //             document.getElementById(`form_${id}`).submit();
+    //         }
+    //     }
+    // </script>
         
-    </body>
-</html>
+</x-app-layout>

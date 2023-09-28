@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->foreignId('flame_id')->constrained()->nullable();
             $table->foreignId('category_id')->constrained();
+            $table->string('image_url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

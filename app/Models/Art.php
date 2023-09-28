@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Art extends Model
 {
@@ -15,7 +16,8 @@ class Art extends Model
         'body',
         'user_id',
         'flame_id',
-        'category_id'
+        'category_id',
+        'image_url',
         ];
     
     public function getPaginateByLimit(int $limit_count = 5)
@@ -27,4 +29,31 @@ class Art extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
+    public function is_liked_by_auth_user()
+    {
+        // 現在の認証されたユーザーを取得
+        $authUser = Auth::user();
+    
+        // ユーザーがこのArtをいいねしているかどうかを判定
+        return $this->likes()->where('user_id', $authUser->id)->exists();
+    }
+    
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    
+    
+    
 }

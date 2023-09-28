@@ -1,36 +1,47 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>ArtLink</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
+<x-app-layout>
     <body>
-        <h1>アート投稿</h1>
-        <form action="/arts" method="POST">
-            @csrf
-            <div class="title">
-                <h2>作品名</h2>
-                <input type="text" name=art[title] placeholder="作品名" value={{ old('art.title' )}}>
-                <p class='title__error' style="color:red">{{ $errors->first('art.title') }} </p>
-            </div>
-            <div class"body">
-                <h2>作品詳細</h2>
-                <textarea name="art[body]" placeholder="この作品は小学校で作った作品で…">{{old('art.body')}}</textarea>
-                <p class='body__error' style="color:red">{{ $errors->first('art.body') }} </p>
-            </div>
-            <div class="category">
-                <h2>Category</h2>Category<select name="art[category_id]">
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <input type="submit" value="store">
-        </form>
-        <div class="footer">
-            <a href="/">戻る</a>
+        
+        <h1 class="text-4xl mt-4 font-black">作品投稿</h1>
+        <div class="flex justify-center ">
+            <form action="/arts" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="image mt-8">
+                    <h2>作品写真</h2>
+                    <input type="file" name="image">
+                </div>
+                <div class="title mt-8">
+                    <h2>作品名</h2>
+                    <input type="text" name=art[title] placeholder="作品名" value={{ old('art.title' )}}>
+                    <p class='title__error' style="color:red">{{ $errors->first('art.title') }} </p>
+                </div>
+                <div class="body mt-8">
+                    <h2>作品詳細</h2>
+                    <textarea name="art[body]" placeholder="この作品は小学校で作った作品で…">{{old('art.body')}}</textarea>
+                    <p class='body__error' style="color:red">{{ $errors->first('art.body') }} </p>
+                </div>
+                <div class="category mt-8">
+                    <h2>カテゴリー</h2>
+                    <select name="art[category_id]">
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
         </div>
+            
+
+            
+            
+            
+        
+        <div class="footer flex justify-center">
+            <input type="submit" value="投稿" class="m-4 btn btn-success btn-sm px-2 py-1 bg-red-400 text-white font-semibold rounded hover:bg-red-500"/>
+            <a href="/arts/" class="m-4">
+                <button type="button" class="px-2 py-1 bg-blue-400 text-white font-semibold rounded hover:bg-blue-500">戻る</button>
+            </a>
+        </div>
+        
+        </form>
     </body>
-</html>
+    
+</x-app-layout>

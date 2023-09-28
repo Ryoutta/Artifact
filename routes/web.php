@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\LikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/arts/{art}', [ArtController::class ,'show']);
     Route::post('/arts', [ArtController::class,'store']);
     Route::get('/categories/{category}',[CategoryController::class,'index']);
+    Route::get('/arts/{art}/edit',[ArtController::class,'edit']);
+    Route::put('arts/{art}',[ArtController::class, 'update']);
+    Route::delete('/arts/{art}',[ArtController::class, 'delete']);
+    //コメント投稿処理
+    Route::post('/arts/{comment_id}/comments',[CommentsController::class,'store']);
+
+//コメント取消処理
+    Route::delete('/comments/{comment_id}', [CommentsController::class,'destroy']);
+    Route::get('/users/{name}', 'UserController@show')->name('users.show');
+
+    Route::post('/art/like/{id}', [LikesController::class, 'like'])->name('art.like');
+    Route::post('/art/unlike/{id}', [LikesController::class, 'unlike'])->name('art.unlike');
+    
 
 });
 
