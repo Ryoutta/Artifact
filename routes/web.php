@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikesController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
